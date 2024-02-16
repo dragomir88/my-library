@@ -6,8 +6,8 @@ import { TextField, Button, Box } from "@mui/material";
 
 interface Props {
   book: IBook;
-  onSave: (book: IBook) => void; // Callback to save the edited book
-  onCancel: () => void; // Callback to cancel editing
+  onSave: (book: IBook) => void; 
+  onCancel: () => void; 
 }
 
 const EditBook: React.FC<Props> = ({ book, onSave, onCancel }) => {

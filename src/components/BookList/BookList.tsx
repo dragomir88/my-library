@@ -1,35 +1,23 @@
-import useSWR, { mutate } from 'swr';
-import { getBooks, IBook, deleteBook} from '../../services/bookService';
-import Book from './Book';
+import React from "react";
+import useSWR from "swr";
+import { getBooks, IBook } from "../../services/bookService";
+import Book from "./Book";
+import Grid from "@mui/material/Grid";
 
 const BookList = () => {
-
-  const { data: books, error } = useSWR<IBook[]>('books', getBooks);
-  
-  const handleDelete = async (id: number) => {
-    await deleteBook(id);
-    mutate('books'); // This tells SWR to re-fetch and update the list of books
-  };
-
-  // Function to call when editing a book
-  const handleEdit = (book: IBook) => {
-    // Here you would show a form to edit the book
-  };
+  const { data: books, error } = useSWR<IBook[]>("books", getBooks);
 
   if (error) return <div>Failed to load books</div>;
   if (!books) return <div>Loading...</div>;
- 
+
   return (
-    <div>
-     {books.map((book) => (
-        <Book
-          key={book.id}
-          book={book}
-          onDelete={handleDelete}
-          onUpdate={handleEdit}
-        />
+    <Grid container spacing={2} alignItems="stretch">
+      {books.map((book) => (
+        <Grid item key={book.id} xs={12} sm={6} md={4} lg={4}>
+          <Book book={book} />
+        </Grid>
       ))}
-    </div>
+    </Grid>
   );
 };
 

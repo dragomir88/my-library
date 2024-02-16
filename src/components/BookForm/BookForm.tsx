@@ -25,7 +25,7 @@ const BookForm: React.FC = () => {
     onSubmit: async (values, { resetForm }) => {
       try {
         await axios.post(API_URL, values);
-        mutate(API_URL); // Revalidate the books list
+        mutate('books');
         resetForm();
       } catch (error) {
         console.error("There was an error adding the book:", error);
