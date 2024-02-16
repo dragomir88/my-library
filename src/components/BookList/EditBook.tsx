@@ -1,13 +1,13 @@
-// EditBook.tsx
 import React from "react";
 import { useFormik } from "formik";
 import { IBook } from "../../services/bookService";
-import { TextField, Button, Box } from "@mui/material";
+import { TextField, Button, Box, CardActions } from "@mui/material";
+import StyledEditBox from "./EditBookStyles";
 
 interface Props {
   book: IBook;
-  onSave: (book: IBook) => void; 
-  onCancel: () => void; 
+  onSave: (book: IBook) => void;
+  onCancel: () => void;
 }
 
 const EditBook: React.FC<Props> = ({ book, onSave, onCancel }) => {
@@ -20,15 +20,7 @@ const EditBook: React.FC<Props> = ({ book, onSave, onCancel }) => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Box
-        sx={{
-          "& .MuiTextField-root": { marginBottom: 2, width: "100%" },
-          backgroundColor: "white", // Sets the background color to white
-          padding: 2, // Adds some padding inside the Box (optional for better spacing)
-          borderRadius: "8px", // Optional: adds rounded corners for a better look
-          boxShadow: "0 4px 8px rgba(0,0,0,0.1)", // Optional: adds a subtle shadow for depth (adjust as needed)
-        }}
-      >
+      <StyledEditBox>
         <TextField
           label="Title"
           name="title"
@@ -55,13 +47,20 @@ const EditBook: React.FC<Props> = ({ book, onSave, onCancel }) => {
           value={formik.values.description}
           onChange={formik.handleChange}
         />
-        <Button type="submit" variant="contained">
-          Save
-        </Button>
-        <Button variant="contained" color="secondary" onClick={onCancel}>
-          Cancel
-        </Button>
-      </Box>
+        <CardActions sx={{ justifyContent: "flex-end", p: 1.5 }}>
+          <Button type="submit" size="small" variant="outlined">
+            Save
+          </Button>
+          <Button
+            size="small"
+            variant="outlined"
+            color="error"
+            onClick={onCancel}
+          >
+            Cancel
+          </Button>
+        </CardActions>
+      </StyledEditBox>
     </form>
   );
 };

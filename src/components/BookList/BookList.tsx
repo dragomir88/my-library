@@ -1,14 +1,15 @@
-import React from "react";
 import useSWR from "swr";
 import { getBooks, IBook } from "../../services/bookService";
 import Book from "./Book";
 import Grid from "@mui/material/Grid";
+import ErrorMessage from "../Common/ErrorMessage";
+import LoadingIndicator from "../Common/LoadingIndicator";
 
 const BookList = () => {
   const { data: books, error } = useSWR<IBook[]>("books", getBooks);
 
-  if (error) return <div>Failed to load books</div>;
-  if (!books) return <div>Loading...</div>;
+  if (error) return <ErrorMessage message="Failed to load books." />; 
+  if (!books) return <LoadingIndicator />;
 
   return (
     <Grid container spacing={2} alignItems="stretch">

@@ -5,6 +5,7 @@ import axios from "axios";
 import { useSWRConfig } from "swr";
 import { TextField, Button, Box, Typography } from "@mui/material";
 import { API_URL } from "../../services/bookService";
+import StyledFormBox from "./BookFormStyles";
 
 interface BookFormValues {
   title: string;
@@ -25,7 +26,7 @@ const BookForm: React.FC = () => {
     onSubmit: async (values, { resetForm }) => {
       try {
         await axios.post(API_URL, values);
-        mutate('books');
+        mutate("books");
         resetForm();
       } catch (error) {
         console.error("There was an error adding the book:", error);
@@ -34,18 +35,7 @@ const BookForm: React.FC = () => {
   });
 
   return (
-    <Box
-      component="form"
-      onSubmit={formik.handleSubmit}
-      noValidate
-      sx={{
-        mt: 1,
-        p: 2, // Adds padding inside the Box
-        backgroundColor: "white", // Sets the background color to white
-        borderRadius: "8px", // Optional: adds rounded corners
-        boxShadow: "0 4px 8px rgba(0,0,0,0.1)", // Optional: adds a subtle shadow
-      }}
-    >
+    <StyledFormBox component="form" onSubmit={formik.handleSubmit} noValidate>
       <Typography variant="h6">Add a New Book</Typography>
       <TextField
         margin="normal"
@@ -97,7 +87,7 @@ const BookForm: React.FC = () => {
       <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
         Add Book
       </Button>
-    </Box>
+    </StyledFormBox>
   );
 };
 
