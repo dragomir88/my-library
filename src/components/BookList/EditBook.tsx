@@ -1,10 +1,10 @@
 import React from "react";
-import { useFormik } from "formik";
 import { TextField, Button, CardActions } from "@mui/material";
 import StyledEditBox from "./EditBookStyles";
 import { IBook } from "../../types/types";
 import { bookFormSchema } from "../AddBook/BookForm/FormValidation";
-import { z } from "zod";
+import { useSWRConfig } from "swr";
+import { useBookFormik } from "../../hooks/formHook";
 
 interface IEditBook {
   book: IBook;
@@ -13,23 +13,12 @@ interface IEditBook {
 }
 
 const EditBook: React.FC<IEditBook> = ({ book, onSave, onCancel }) => {
-  const formik = useFormik({
-    initialValues: book,
-    validate: (values) => {
-      try {
-        bookFormSchema.parse(values);
-        return {};
-      } catch (error) {
-        if (error instanceof z.ZodError) {
-          return error.flatten().fieldErrors;
-        }
-        console.error("Validation error:", error);
-        return {};
-      }
-    },
-    onSubmit: (values) => {
-      onSave(values);
-    },
+  const { mutate } = useSWRConfig();
+  const formik = useBookFormik({
+    bookFormSchema,
+    currentBook: book,
+    onFormSubmit: (updatedBook) => onSave(updatedBook || book),  // Fallback to the original book if updatedBook is undefined
+    mutate
   });
 
   return (
@@ -40,7 +29,7 @@ const EditBook: React.FC<IEditBook> = ({ book, onSave, onCancel }) => {
           name="title"
           value={formik.values.title}
           onChange={formik.handleChange}
-          onBlur={formik.handleBlur} // Add onBlur to track field touch status
+          onBlur={formik.handleBlur}  
           error={formik.touched.title && Boolean(formik.errors.title)}
           helperText={formik.touched.title && formik.errors.title}
         />
@@ -49,7 +38,7 @@ const EditBook: React.FC<IEditBook> = ({ book, onSave, onCancel }) => {
           name="author"
           value={formik.values.author}
           onChange={formik.handleChange}
-          onBlur={formik.handleBlur} // Add onBlur to track field touch status
+          onBlur={formik.handleBlur}  
           error={formik.touched.author && Boolean(formik.errors.author)}
           helperText={formik.touched.author && formik.errors.author}
         />
@@ -58,7 +47,7 @@ const EditBook: React.FC<IEditBook> = ({ book, onSave, onCancel }) => {
           name="genre"
           value={formik.values.genre}
           onChange={formik.handleChange}
-          onBlur={formik.handleBlur} // Add onBlur to track field touch status
+          onBlur={formik.handleBlur}  
           error={formik.touched.genre && Boolean(formik.errors.genre)}
           helperText={formik.touched.genre && formik.errors.genre}
         />
@@ -69,7 +58,7 @@ const EditBook: React.FC<IEditBook> = ({ book, onSave, onCancel }) => {
           rows={4}
           value={formik.values.description}
           onChange={formik.handleChange}
-          onBlur={formik.handleBlur} // Add onBlur to track field touch status
+          onBlur={formik.handleBlur}  
           error={formik.touched.description && Boolean(formik.errors.description)}
           helperText={formik.touched.description && formik.errors.description}
         />

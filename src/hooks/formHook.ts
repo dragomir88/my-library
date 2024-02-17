@@ -1,24 +1,25 @@
 import { useFormik } from "formik";
+import { addBook, updateBook } from "../services/bookService";  
+import { BookFormValues, IBook } from "../types/types";
 import { z } from "zod";
-import axios from "axios";
-import { API_URL } from "../services/bookService";
-import { BookFormValues } from "../types/types";
 
 export const useBookFormik = ({
   bookFormSchema,
+  currentBook,
   onFormSubmit,
   mutate,
 }: {
   bookFormSchema: z.ZodSchema<BookFormValues>;
-  onFormSubmit: () => void;
+  currentBook?: IBook | null;
+  onFormSubmit: (book?: IBook) => void;   
   mutate: Function;
 }) => {
   return useFormik({
     initialValues: {
-      title: "",
-      author: "",
-      genre: "",
-      description: "",
+      title: currentBook?.title || "",
+      author: currentBook?.author || "",
+      genre: currentBook?.genre || "",
+      description: currentBook?.description || "",
     },
     validate: (values) => {
       try {
@@ -34,12 +35,14 @@ export const useBookFormik = ({
     },
     onSubmit: async (values, { resetForm }) => {
       try {
-        await axios.post(API_URL, values);
+        const response = currentBook
+          ? await updateBook(currentBook.id, values)
+          : await addBook(values);
         mutate("books");
         resetForm();
-        onFormSubmit();
+        onFormSubmit(response);
       } catch (error) {
-        console.error("There was an error adding the book:", error);
+        console.error("There was an error processing the book:", error);
       }
     },
   });

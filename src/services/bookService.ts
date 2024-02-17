@@ -8,12 +8,12 @@ export const getBooks = async () => {
   return response.data;  
 };
  
-export const addBook = async (book: IBook) => {
+export const addBook = async (book: Partial<IBook>) => {
   const response = await axios.post<IBook>(API_URL, book);
   return response.data;  
 };
  
-export const updateBook = async (id: number, book: IBook) => {
+export const updateBook = async (id: number, book: Partial<IBook>) => {
   const response = await axios.put<IBook>(`${API_URL}/${id}`, book);
   return response.data;  
 };
