@@ -35,21 +35,3 @@ To get started with 'My Library', follow these steps:
  npm run dev
 ```
 
-## Starting the API Server
-
-1.**Navigate to the API folder**
-
-```bash
-  cd api
-```
-
-2. **Install API dependencies**
-
-```bash
-npm install
-```
-3. **Start the development server**
-
-```bash
- node index.js
-```
