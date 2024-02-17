@@ -1,8 +1,9 @@
+// AddBook.tsx
 import React, { useState } from "react";
 import { Box, Zoom } from "@mui/material";
 import AddBookButton from "./AddBookButton/AddBookButton";
 import BookForm from "./BookForm/BookForm";
-import { AddBookButtonContainer } from "./AddBookStyles";
+import { AddBookButtonContainer, BookFormContainer } from "./AddBookStyles";
 
 const AddBook: React.FC = () => {
   const [formVisible, setFormVisible] = useState(false);
@@ -16,14 +17,10 @@ const AddBook: React.FC = () => {
       <AddBookButtonContainer formVisible={formVisible}>
         <AddBookButton onClick={toggleFormVisibility} />
       </AddBookButtonContainer>
-      <Zoom
-        in={formVisible}
-        style={{ width: "100%" }}
-        timeout={{ enter: 500, exit: 300 }}
-      >
-        <div style={{ display: formVisible ? "block" : "none" }}>
+      <Zoom in={formVisible} style={{ width: "100%" }} timeout={{ enter: 500, exit: 300 }}>
+        <BookFormContainer formVisible={formVisible}>
           <BookForm onFormSubmit={toggleFormVisibility} />
-        </div>
+        </BookFormContainer>
       </Zoom>
     </Box>
   );

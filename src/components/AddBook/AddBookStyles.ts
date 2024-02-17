@@ -10,3 +10,10 @@ export const AddBookButtonContainer = styled('div', {
     display: formVisible ? 'none' : 'flex',
     justifyContent: 'center',
   }));
+
+export const BookFormContainer = styled('div')<{ formVisible: boolean }>(
+  ({ formVisible }) => ({
+    display: formVisible ? 'block' : 'none',
+    width: '100%',
+  }),
+);
