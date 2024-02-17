@@ -48,3 +48,8 @@ To get started with 'My Library', follow these steps:
 ```bash
 npm install
 ```
+3. **Start the development server**
+
+```bash
+ node index.js
+```
