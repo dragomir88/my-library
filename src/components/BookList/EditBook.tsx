@@ -17,7 +17,7 @@ const EditBook: React.FC<IEditBook> = ({ book, onSave, onCancel }) => {
   const formik = useBookFormik({
     bookFormSchema,
     currentBook: book,
-    onFormSubmit: (updatedBook) => onSave(updatedBook || book),  // Fallback to the original book if updatedBook is undefined
+    onFormSubmit: (updatedBook) => onSave(updatedBook || book),
     mutate
   });
 

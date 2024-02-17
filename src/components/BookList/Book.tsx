@@ -16,13 +16,13 @@ const Book: React.FC<{ book: IBook }> = ({ book }) => {
 
   const handleSave = async (updatedBook: IBook) => {
     await updateBook(updatedBook.id, updatedBook);
-    mutate('books'); // Use the SWR key that corresponds to your books data
+    mutate('books');  
     setIsEditing(false);
   };
 
   const handleDelete = async () => {
     await deleteBook(book.id);
-    mutate('books'); // Use the SWR key that corresponds to your books data
+    mutate('books');  
   };
 
   return (
