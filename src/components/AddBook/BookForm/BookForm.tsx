@@ -1,11 +1,11 @@
-// BookForm.tsx
 import React from "react";
 import { useFormik } from "formik";
 import axios from "axios";
 import { useSWRConfig } from "swr";
-import { TextField, Button, Box, Typography } from "@mui/material";
-import { API_URL } from "../../services/bookService";
-import StyledFormBox from "./BookFormStyles";
+import { TextField, Typography } from "@mui/material";
+
+import { CenteredButton , StyledFormBox} from "./BookFormStyles";
+import { API_URL } from "../../../services/bookService";
 
 interface BookFormValues {
   title: string;
@@ -14,8 +14,9 @@ interface BookFormValues {
   description: string;
 }
 
-const BookForm: React.FC = () => {
+const BookForm: React.FC<{ onFormSubmit: () => void }> = ({ onFormSubmit }) => {
   const { mutate } = useSWRConfig();
+
   const formik = useFormik<BookFormValues>({
     initialValues: {
       title: "",
@@ -28,6 +29,7 @@ const BookForm: React.FC = () => {
         await axios.post(API_URL, values);
         mutate("books");
         resetForm();
+        onFormSubmit(); 
       } catch (error) {
         console.error("There was an error adding the book:", error);
       }
@@ -36,7 +38,9 @@ const BookForm: React.FC = () => {
 
   return (
     <StyledFormBox component="form" onSubmit={formik.handleSubmit} noValidate>
-      <Typography variant="h6">Add a New Book</Typography>
+      <Typography variant="h4" sx={{ color: "black" }}>
+        Add a New Book
+      </Typography>
       <TextField
         margin="normal"
         required
@@ -84,9 +88,9 @@ const BookForm: React.FC = () => {
         value={formik.values.description}
         onChange={formik.handleChange}
       />
-      <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-        Add Book
-      </Button>
+     <CenteredButton type="submit" variant="contained">
+      Add Book
+    </CenteredButton>
     </StyledFormBox>
   );
 };
