@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import { IBook } from "../../services/bookService";
-import { TextField, Button, Box, CardActions } from "@mui/material";
+import { TextField, Button, CardActions } from "@mui/material";
 import StyledEditBox from "./EditBookStyles";
 
 interface Props {
