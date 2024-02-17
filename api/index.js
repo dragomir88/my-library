@@ -67,10 +67,10 @@ let books = [
   },
   { 
     id: 9, 
-    title: "Noble House", 
+    title: "King Rat", 
     author: "James Clavell", 
     genre: "Historical Fiction",
-    description: "Set in Hong Kong in 1963, this novel follows the intertwined fates of businessmen and criminals."
+    description: "Set in a Japanese POW camp during World War II, this novel explores the survival strategies of a group of prisoners with a focus on an American corporal known as the King Rat."
   }
 ];
 

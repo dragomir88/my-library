@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "npm-run-all --parallel server client",
     "test": "node index.js"
   },
   "author": "",
