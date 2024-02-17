@@ -8,7 +8,71 @@ app.use(express.json());
 // This will store our books in memory,
 // "id" is the unique identifier,
 // other fields are up to you
-let books = [];
+let books = [
+  { 
+    id: 1, 
+    title: "Manufacturing Consent: The Political Economy of the Mass Media", 
+    author: "Noam Chomsky", 
+    genre: "Non-Fiction",
+    description: "Explores how the mass media serves as a propaganda system that cooperates with the state and corporate interests."
+  },
+  { 
+    id: 2, 
+    title: "Hegemony or Survival: America's Quest for Global Dominance", 
+    author: "Noam Chomsky", 
+    genre: "Non-Fiction",
+    description: "Analyzes the policies and actions of the U.S. in the context of its global dominance and the potential consequences."
+  },
+  { 
+    id: 3, 
+    title: "Understanding Power: The Indispensable Chomsky", 
+    author: "Noam Chomsky", 
+    genre: "Non-Fiction",
+    description: "A wide-ranging collection of discussions covering the politics of power and the workings of institutions in shaping discourse."
+  },
+  { 
+    id: 4, 
+    title: "The Sublime Object of Ideology", 
+    author: "Slavoj Žižek", 
+    genre: "Philosophy",
+    description: "Žižek's first major work in English, examining the mechanisms and structures that shape ideology."
+  },
+  { 
+    id: 5, 
+    title: "Living in the End Times", 
+    author: "Slavoj Žižek", 
+    genre: "Philosophy",
+    description: "A critical examination of contemporary society, culture, and politics through the lens of psychoanalysis and philosophy."
+  },
+  { 
+    id: 6, 
+    title: "The Parallax View", 
+    author: "Slavoj Žižek", 
+    genre: "Philosophy",
+    description: "Explores the concept of 'parallax,' the apparent displacement of an object caused by a change in observational position."
+  },
+  { 
+    id: 7, 
+    title: "Shogun", 
+    author: "James Clavell", 
+    genre: "Historical Fiction",
+    description: "Set in the early 17th century, this novel tells the story of an English navigator who becomes a samurai in Japan."
+  },
+  { 
+    id: 8, 
+    title: "Tai-Pan", 
+    author: "James Clavell", 
+    genre: "Historical Fiction",
+    description: "A tale of power, struggle, and the founding of Hong Kong after the Opium Wars in the 19th century."
+  },
+  { 
+    id: 9, 
+    title: "Noble House", 
+    author: "James Clavell", 
+    genre: "Historical Fiction",
+    description: "Set in Hong Kong in 1963, this novel follows the intertwined fates of businessmen and criminals."
+  }
+];
 
 // Get all books
 app.get("/books", (req, res) => {

@@ -1,40 +1,13 @@
 import React from "react";
-import { useFormik } from "formik";
-import axios from "axios";
 import { useSWRConfig } from "swr";
 import { TextField, Typography } from "@mui/material";
-
-import { CenteredButton , StyledFormBox} from "./BookFormStyles";
-import { API_URL } from "../../../services/bookService";
-
-interface BookFormValues {
-  title: string;
-  author: string;
-  genre: string;
-  description: string;
-}
+import { CenteredButton, StyledFormBox } from "./BookFormStyles";
+import { bookFormSchema } from "./FormValidation";
+import { useBookFormik } from "../../../hooks/formHook"; 
 
 const BookForm: React.FC<{ onFormSubmit: () => void }> = ({ onFormSubmit }) => {
   const { mutate } = useSWRConfig();
-
-  const formik = useFormik<BookFormValues>({
-    initialValues: {
-      title: "",
-      author: "",
-      genre: "",
-      description: "",
-    },
-    onSubmit: async (values, { resetForm }) => {
-      try {
-        await axios.post(API_URL, values);
-        mutate("books");
-        resetForm();
-        onFormSubmit(); 
-      } catch (error) {
-        console.error("There was an error adding the book:", error);
-      }
-    },
-  });
+  const formik = useBookFormik({ bookFormSchema, onFormSubmit, mutate });
 
   return (
     <StyledFormBox component="form" onSubmit={formik.handleSubmit} noValidate>
@@ -52,6 +25,8 @@ const BookForm: React.FC<{ onFormSubmit: () => void }> = ({ onFormSubmit }) => {
         autoFocus
         value={formik.values.title}
         onChange={formik.handleChange}
+        error={formik.touched.title && Boolean(formik.errors.title)}
+        helperText={formik.touched.title && formik.errors.title}
       />
       <TextField
         margin="normal"
@@ -63,6 +38,8 @@ const BookForm: React.FC<{ onFormSubmit: () => void }> = ({ onFormSubmit }) => {
         autoComplete="author"
         value={formik.values.author}
         onChange={formik.handleChange}
+        error={formik.touched.author && Boolean(formik.errors.author)}
+        helperText={formik.touched.author && formik.errors.author}
       />
       <TextField
         margin="normal"
@@ -74,6 +51,8 @@ const BookForm: React.FC<{ onFormSubmit: () => void }> = ({ onFormSubmit }) => {
         autoComplete="genre"
         value={formik.values.genre}
         onChange={formik.handleChange}
+        error={formik.touched.genre && Boolean(formik.errors.genre)}
+        helperText={formik.touched.genre && formik.errors.genre}
       />
       <TextField
         margin="normal"
@@ -87,10 +66,12 @@ const BookForm: React.FC<{ onFormSubmit: () => void }> = ({ onFormSubmit }) => {
         rows={4}
         value={formik.values.description}
         onChange={formik.handleChange}
+        error={formik.touched.description && Boolean(formik.errors.description)}
+        helperText={formik.touched.description && formik.errors.description}
       />
-     <CenteredButton type="submit" variant="contained">
-      Add Book
-    </CenteredButton>
+      <CenteredButton type="submit" variant="contained">
+        Add Book
+      </CenteredButton>
     </StyledFormBox>
   );
 };

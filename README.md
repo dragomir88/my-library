@@ -1,30 +1,50 @@
-# React + TypeScript + Vite
+# My Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+My Library is a web application built with React, Vite, Material-UI, Formik, SWR, Zod, and Axios.
 
-Currently, two official plugins are available:
+## Essential Packages
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React**: A JavaScript library for building user interfaces.
+- **@mui/material** and **@mui/icons-material**: Material-UI components for React.
+- **Axios**: Promise based HTTP client for making requests.
+- **Formik**: A small library that helps you with the 3 most annoying parts of form handling in React.
+- **SWR**: React Hooks library for remote data fetching.
+- **Zod**: TypeScript-first schema validation with static type inference.
+- **@emotion/react** and **@emotion/styled**: Library designed for writing CSS styles with JavaScript.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+To get started with 'My Library', follow these steps:
 
-- Configure the top-level `parserOptions` property like this:
+1. **Clone the repository**
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+   ```bash
+   git clone https://github.com/dragomir88/my-library
+   cd my-library
+   ```
+
+2. **Install dependencies**
+
+```bash
+  npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+3. **Start the development server**
+
+```bash
+ npm run dev
+```
+
+## Starting the API Server
+
+1.**Navigate to the API folder**
+
+```bash
+  cd api
+```
+
+2. **Install API dependencies**
+
+```bash
+npm install
+```
