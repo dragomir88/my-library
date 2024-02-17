@@ -1,16 +1,16 @@
 import React from "react";
 import { useFormik } from "formik";
-import { IBook } from "../../services/bookService";
 import { TextField, Button, CardActions } from "@mui/material";
 import StyledEditBox from "./EditBookStyles";
+import { IBook } from "../../types/types";
 
-interface Props {
+interface IEditBook {
   book: IBook;
   onSave: (book: IBook) => void;
   onCancel: () => void;
 }
 
-const EditBook: React.FC<Props> = ({ book, onSave, onCancel }) => {
+const EditBook: React.FC<IEditBook> = ({ book, onSave, onCancel }) => {
   const formik = useFormik({
     initialValues: book,
     onSubmit: (values) => {

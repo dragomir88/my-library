@@ -1,10 +1,9 @@
-// AddBookButton.tsx
 import React from 'react';
 import { IconButton } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 
 interface AddBookButtonProps {
-  onClick: () => void; // Function to toggle form visibility
+  onClick: () => void;  
 }
 
 const AddBookButton: React.FC<AddBookButtonProps> = ({ onClick }) => {

@@ -1,19 +1,20 @@
 import React from 'react';
-import { IBook } from '../../services/bookService';
+ 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import { IBook } from '../../types/types';
 
-interface Props {
+interface IDisplayBook {
   book: IBook;
   onEdit: () => void;
   onDelete: () => void;
 }
 
-const DisplayBook: React.FC<Props> = ({ book, onEdit, onDelete }) => {
+const DisplayBook: React.FC<IDisplayBook> = ({ book, onEdit, onDelete }) => {
   return (
     <Card variant="outlined" sx={{ display: 'flex', flexDirection: 'column', minHeight: '100%' }}>
       <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, justifyContent: 'space-between' }}>

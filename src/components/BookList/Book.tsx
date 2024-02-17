@@ -1,16 +1,13 @@
 // Book.tsx
 import React, { useState } from 'react';
-import { IBook, deleteBook, updateBook } from '../../services/bookService';
+import { deleteBook, updateBook } from '../../services/bookService';
 import DisplayBook from './DisplayBook';
 import EditBook from './EditBook';
 import { mutate } from 'swr';
 import Card from '@mui/material/Card';
+import { IBook } from '../../types/types';
 
-interface Props {
-  book: IBook;
-}
-
-const Book: React.FC<Props> = ({ book }) => {
+const Book: React.FC<{ book: IBook }> = ({ book }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEdit = () => setIsEditing(true);
@@ -19,17 +16,17 @@ const Book: React.FC<Props> = ({ book }) => {
 
   const handleSave = async (updatedBook: IBook) => {
     await updateBook(updatedBook.id, updatedBook);
-    mutate('books'); 
+    mutate('books'); // Use the SWR key that corresponds to your books data
     setIsEditing(false);
   };
 
   const handleDelete = async () => {
     await deleteBook(book.id);
-    mutate('books'); 
+    mutate('books'); // Use the SWR key that corresponds to your books data
   };
 
   return (
-    <Card sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}> {/* Use Card as the root component */}
+    <Card sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       {isEditing ? (
         <EditBook book={book} onSave={handleSave} onCancel={handleCancel} />
       ) : (

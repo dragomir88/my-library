@@ -2,13 +2,7 @@ import { useFormik } from "formik";
 import { z } from "zod";
 import axios from "axios";
 import { API_URL } from "../services/bookService";
-
-interface BookFormValues {
-    title: string;
-    author: string;
-    genre: string;
-    description: string;
-  }
+import { BookFormValues } from "../types/types";
 
 export const useBookFormik = ({
   bookFormSchema,

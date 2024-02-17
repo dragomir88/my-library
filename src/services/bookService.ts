@@ -1,13 +1,7 @@
 import axios from 'axios';
+import { IBook } from '../types/types';
  
 export const API_URL = 'http://localhost:3001/books';
-export interface IBook {
-  id: number;
-  title: string;
-  author: string;
-  genre: string;
-  description: string;
-}
  
 export const getBooks = async () => {
   const response = await axios.get<IBook[]>(API_URL);

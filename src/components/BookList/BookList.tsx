@@ -1,9 +1,10 @@
 import useSWR from "swr";
-import { getBooks, IBook } from "../../services/bookService";
+import { getBooks } from "../../services/bookService";
 import Book from "./Book";
 import Grid from "@mui/material/Grid";
 import ErrorMessage from "../Common/ErrorMessage";
 import LoadingIndicator from "../Common/LoadingIndicator";
+import { IBook } from "../../types/types";
 
 const BookList = () => {
   const { data: books, error } = useSWR<IBook[]>("books", getBooks);
