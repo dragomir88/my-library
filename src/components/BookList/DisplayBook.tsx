@@ -7,14 +7,21 @@ import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { IBook } from '../../types/types';
+import { useSWRConfig } from 'swr';
+import { deleteBook } from '../../services/bookService';
 
 interface IDisplayBook {
   book: IBook;
   onEdit: () => void;
-  onDelete: () => void;
 }
 
-const DisplayBook: React.FC<IDisplayBook> = ({ book, onEdit, onDelete }) => {
+const DisplayBook: React.FC<IDisplayBook> = ({ book, onEdit }) => {
+  const { mutate } = useSWRConfig();
+
+  const handleDelete = async () => {
+    await deleteBook(book.id);
+    mutate('books');  
+  };
   return (
     <Card variant="outlined" sx={{ display: 'flex', flexDirection: 'column', minHeight: '100%' }}>
       <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, justifyContent: 'space-between' }}>
@@ -34,7 +41,7 @@ const DisplayBook: React.FC<IDisplayBook> = ({ book, onEdit, onDelete }) => {
         </CardContent>
         <CardActions sx={{ justifyContent: 'flex-end', p: 1.5 }}>
           <Button size="small" variant="outlined" onClick={onEdit}>Edit</Button>
-          <Button size="small" variant="outlined" color="error" onClick={onDelete}>Delete</Button>
+          <Button size="small" variant="outlined" color="error" onClick={handleDelete}>Delete</Button>
         </CardActions>
       </Box>
     </Card>

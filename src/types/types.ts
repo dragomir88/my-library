@@ -4,8 +4,6 @@ export interface BookFormValues {
     genre: string;
     description: string;
   }
-
-
 export interface IBook {
     id: number;
     title: string;

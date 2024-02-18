@@ -1,26 +1,24 @@
-import React from "react";
-import { TextField, Button, CardActions } from "@mui/material";
-import StyledEditBox from "./EditBookStyles";
-import { IBook } from "../../types/types";
-import { bookFormSchema } from "../AddBook/BookForm/FormValidation";
-import { useSWRConfig } from "swr";
-import { useBookFormik } from "../../hooks/formHook";
+import React from 'react';
+import { TextField, Button, CardActions } from '@mui/material';
+import { IBook } from '../../types/types';  
+import { useBookFormik } from '../../hooks/formHook';  
+import { bookFormSchema } from './FormValidation';  
+import StyledEditBox from './EditBookStyles';  
+import { useSWRConfig } from 'swr';
 
-interface IEditBook {
-  book: IBook;
-  onSave: (book: IBook) => void;
-  onCancel: () => void;
+interface GenericBookFormProps {
+  book?: IBook;
+  onCancel: () => void; 
 }
 
-const EditBook: React.FC<IEditBook> = ({ book, onSave, onCancel }) => {
+const GenericBookForm: React.FC<GenericBookFormProps> = ({ book, onCancel }) => {
   const { mutate } = useSWRConfig();
   const formik = useBookFormik({
     bookFormSchema,
     currentBook: book,
-    onFormSubmit: (updatedBook) => onSave(updatedBook || book),
-    mutate
+    onFormSubmit : onCancel,
+    mutate,
   });
-
   return (
     <form onSubmit={formik.handleSubmit}>
       <StyledEditBox>
@@ -75,4 +73,4 @@ const EditBook: React.FC<IEditBook> = ({ book, onSave, onCancel }) => {
   );
 };
 
-export default EditBook;
+export default GenericBookForm;
