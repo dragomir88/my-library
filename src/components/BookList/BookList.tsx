@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import { getBooks } from "../../services/bookService";
-import Book from "./Book";
+import Book from "./Book/Book";
 import Grid from "@mui/material/Grid";
 import ErrorMessage from "../Common/ErrorMessage";
 import LoadingIndicator from "../Common/LoadingIndicator";

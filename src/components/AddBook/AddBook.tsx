@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Zoom } from "@mui/material";
 import AddBookButton from "./AddBookButton/AddBookButton";
 import { AddBookButtonContainer, BookFormContainer } from "./AddBookStyles";
-import GenericBookForm from "../BookList/GenericBookForm";
+import GenericBookForm from "../BookList/Book/GenericBookForm";
 
 const AddBook: React.FC = () => {
   const [formVisible, setFormVisible] = useState(false);

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card } from '@mui/material';
-import { IBook } from '../../types/types';  
+import { IBook } from '../../../types/types';  
 import DisplayBook from './DisplayBook';
 import GenericBookForm from './GenericBookForm';
 interface BookProps {

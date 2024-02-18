@@ -6,9 +6,9 @@ import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { IBook } from '../../types/types';
+import { IBook } from '../../../types/types';
 import { useSWRConfig } from 'swr';
-import { deleteBook } from '../../services/bookService';
+import { deleteBook } from '../../../services/bookService';
 
 interface IDisplayBook {
   book: IBook;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField, Button, CardActions } from '@mui/material';
-import { IBook } from '../../types/types';  
-import { useBookFormik } from '../../hooks/formHook';  
+import { IBook } from '../../../types/types';  
+import { useBookFormik } from '../../../hooks/formHook';  
 import { bookFormSchema } from './FormValidation';  
 import StyledEditBox from './EditBookStyles';  
 import { useSWRConfig } from 'swr';
